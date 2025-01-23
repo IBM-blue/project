@@ -23,6 +23,9 @@ public class SeatService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private JwtService jwtService;
+
 
     public List<Integer> getSeats(String date, String time){
         List<Integer> res = seatRepository.findByDateAndTime(date, time);
@@ -43,5 +46,16 @@ public class SeatService {
         m.setCredit(m.getCredit()-50);
         managerRepository.save(m);
         return true;
+    }
+
+    public boolean validToken(String header){
+        String token=null;
+        if(header.startsWith("Bearer")){
+            token = header.substring(7);
+        } else {
+            return false;
+        }
+
+        return jwtService.validateToken(token);
     }
 }
