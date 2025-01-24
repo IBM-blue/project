@@ -40,7 +40,9 @@ public class AuthService {
         user.setPassword(password); 
         user.setManagerID(email);
         userRepository.save(user);
-        return true;
+
+        return jwtService.generateToken(username, password);
+        
     }
 
 }
