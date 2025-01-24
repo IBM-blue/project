@@ -26,4 +26,18 @@ public class AuthController {
         return token;
 
     }
+
+
+    @PostMapping("/signup")
+    public String signup(@RequestBody RegisterDTO registerDTO) {
+        boolean isRegistered = authService.register(registerDTO.getUsername(), registerDTO.getPassword());
+        if (!isRegistered) {
+            return "Registration Failed";
+        }
+        return "User Registered Successfully";
+    }
+
+
+
+    
 }
