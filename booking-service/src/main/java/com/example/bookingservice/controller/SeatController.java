@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/seats")
+@RequestMapping("/api/v1")
 public class SeatController {
 
     @Autowired
@@ -21,7 +21,7 @@ public class SeatController {
 
 
 
-    @GetMapping("")
+    @GetMapping("/seats")
     public ResponseEntity<?> getSeats(@RequestHeader("Authorization") String header,
                                    @RequestParam String date,
                                    @RequestParam String time){
@@ -31,12 +31,23 @@ public class SeatController {
         return new ResponseEntity<>(seatService.getSeats(date, time), HttpStatus.OK);
     }
 
-    @PostMapping("")
+    @PostMapping("/seats")
     public ResponseEntity<?> bookSeat(@RequestHeader("Authorization") String header,
                          @RequestBody SeatRequest seatRequest){
         if(!seatService.validToken(header)){
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
         return  new ResponseEntity<>(seatService.bookSeat(seatRequest.getDate(), seatRequest.getTime(), seatRequest.getUserId(), seatRequest.getSeatNo()), HttpStatus.OK);
+    }
+
+
+    @GetMapping("/manager-coins")
+    public ResponseEntity<?> getManagerCoins(@RequestHeader("Authorization") String header,
+                                             @RequestParam long userId){
+        if(!seatService.validToken(header)){
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
+
+        return new ResponseEntity<>(seatService.getManagerCoins(userId), HttpStatus.OK);
     }
 }

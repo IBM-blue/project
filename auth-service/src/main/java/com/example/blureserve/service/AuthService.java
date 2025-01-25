@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 public class AuthService {
 
 
-
     @Autowired
     private AuthRepository authRepository;
 
@@ -19,7 +18,6 @@ public class AuthService {
 
     public String authenticate(String username, String password){
         User user = authRepository.findByUsernameAndPassword(username, password);
-
         if(user==null){
             return null;
         }

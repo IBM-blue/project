@@ -58,4 +58,10 @@ public class SeatService {
 
         return jwtService.validateToken(token);
     }
+
+    public int getManagerCoins(long userId) {
+        User u = userRepository.findById(userId).get();
+        Manager m = managerRepository.findById(u.getManagerId()).get();
+        return m.getCredit();
+    }
 }

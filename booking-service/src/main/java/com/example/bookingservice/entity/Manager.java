@@ -11,6 +11,15 @@ public class Manager {
     private long id;
     private String name;
     private int credit;
+    private String email;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public long getId() {
         return id;
