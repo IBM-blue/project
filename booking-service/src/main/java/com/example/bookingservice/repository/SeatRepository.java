@@ -13,4 +13,7 @@ public interface SeatRepository extends JpaRepository<Seat, Long> {
 
     @Query(value = "SELECT u.seat_no FROM seat u WHERE u.date = :date AND u.time = :time AND u.location= :location", nativeQuery = true)
     List<Integer> findByDateAndTimeAndLocation(@Param("date") String date, @Param("time") String time, @Param("location") String location);
+
+    List<Seat> findAllByUserId(long userId);
+
 }

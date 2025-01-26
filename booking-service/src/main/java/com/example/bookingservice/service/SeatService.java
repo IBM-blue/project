@@ -88,4 +88,9 @@ public class SeatService {
         seatRepository.deleteById(seatId);
         return true;
     }
+
+
+    public List<Seat> getAllSeatForUser(long userId){
+        return seatRepository.findAllByUserId(userId);
+    }
 }

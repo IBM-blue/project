@@ -53,6 +53,17 @@ public class SeatController {
     }
 
 
+    @GetMapping("seats/{userId}")
+    public ResponseEntity<?> getSeatsForUser(@RequestHeader("Authorization") String header,
+                                             @PathVariable long userId){
+        if(!seatService.validToken(header)){
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
+
+        return new ResponseEntity<>(seatService.getAllSeatForUser(userId), HttpStatus.OK);
+    }
+
+
 
 
     @DeleteMapping("/seats/{seatId}")
