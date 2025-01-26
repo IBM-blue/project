@@ -1,5 +1,6 @@
 package com.example.blureserve.service;
 
+import com.example.blureserve.dto.AuthResponse;
 import com.example.blureserve.entity.Manager;
 import com.example.blureserve.entity.User;
 import com.example.blureserve.repository.AuthRepository;
@@ -21,18 +22,21 @@ public class AuthService {
     private ManagerRepository managerRepository;
 
 
-    public String authenticate(String username, String password){
+    public AuthResponse authenticate(String username, String password){
         User user = authRepository.findByUsernameAndPassword(username, password);
+
         if(user==null){
             return null;
         }
 
-        return jwtService.generateToken(user.getUsername(), user.getId());
+        String token =  jwtService.generateToken(user.getUsername(), user.getId());
+
+        return new AuthResponse(user.getId(), token);
     }
 
 
     
-    public String register(String username, String password, String managerEmail) {
+    public AuthResponse register(String username, String password, String managerEmail) {
         if (authRepository.findByUsername(username)!=null) {
             return null;
         }
@@ -45,7 +49,9 @@ public class AuthService {
         user.setManagerId(manager.getId());
         User u = authRepository.save(user);
 
-        return jwtService.generateToken(username, u.getId());
+        String token = jwtService.generateToken(username, u.getId());
+
+        return new AuthResponse(u.getId(), token);
         
     }
 

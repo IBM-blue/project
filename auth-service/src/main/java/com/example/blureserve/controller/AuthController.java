@@ -1,5 +1,6 @@
 package com.example.blureserve.controller;
 
+import com.example.blureserve.dto.AuthResponse;
 import com.example.blureserve.dto.LoginDTO;
 import com.example.blureserve.dto.RegisterDTO;
 import com.example.blureserve.service.AuthService;
@@ -19,21 +20,21 @@ public class AuthController {
     private AuthService authService;
 
     @PostMapping("/login")
-    public String login(@RequestBody LoginDTO loginDTO){
+    public ResponseEntity<?> login(@RequestBody LoginDTO loginDTO){
 
-        String token = authService.authenticate(loginDTO.getUsername(), loginDTO.getPassword());
-        if(token==null){
-            return "User Not Found";
+        AuthResponse res = authService.authenticate(loginDTO.getUsername(), loginDTO.getPassword());
+        if(res==null){
+            return new ResponseEntity<>("User Not Found", HttpStatus.NOT_FOUND);
         }
 
-        return token;
+        return new ResponseEntity<>(res, HttpStatus.OK);
 
     }
 
 
     @PostMapping("/signup")
     public ResponseEntity<?> signup(@RequestBody RegisterDTO registerDTO) {
-        String res = authService.register(registerDTO.getUsername(), registerDTO.getPassword(), registerDTO.getManagerEmail());
+        AuthResponse res = authService.register(registerDTO.getUsername(), registerDTO.getPassword(), registerDTO.getManagerEmail());
         if (res==null) {
             return new ResponseEntity<>("Already Registered User", HttpStatus.BAD_REQUEST);
         }
