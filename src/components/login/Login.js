@@ -1,8 +1,8 @@
-// components/Login.js
 import React, { useState } from "react";
 import { TextField, Button, Container, Typography, Box } from "@mui/material";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import "./Login.css"; // Import the CSS file
 
 function Login() {
   const [username, setUsername] = useState("");
@@ -15,55 +15,54 @@ function Login() {
         username,
         password,
       });
-      
 
-      // Store token and user ID in localStorage
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("userId", response.data.userId);
 
       alert("Login successful!");
-
-      // test
-      const token = localStorage.getItem("token");
-      const userId = localStorage.getItem("userId");
-
-      console.log("Token:", token);
-      console.log("User ID:", userId);
       navigate("/cafe");
-
     } catch (error) {
       alert("Login failed: " + error.response.data);
     }
   };
 
   return (
-    <Container maxWidth="xs">
-      <Box mt={5}>
-        <Typography variant="h4" gutterBottom>
-          Login
-        </Typography>
-        <TextField
-          label="Username"
-          fullWidth
-          margin="normal"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <TextField
-          label="Password"
-          type="password"
-          fullWidth
-          margin="normal"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <Button variant="contained" color="primary" fullWidth onClick={handleLogin}>
-          Login
-        </Button>
-      </Box>
-    </Container>
+    <div className="login-container">
+      <Container maxWidth="xs" className="login-card">
+        <Box>
+          <Typography variant="h4" gutterBottom className="login-title">
+            Login
+          </Typography>
+          <TextField
+            label="Username"
+            fullWidth
+            margin="normal"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            InputProps={{ className: "login-input" }}
+          />
+          <TextField
+            label="Password"
+            type="password"
+            fullWidth
+            margin="normal"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            InputProps={{ className: "login-input" }}
+          />
+          <Button
+            variant="contained"
+            color="primary"
+            fullWidth
+            onClick={handleLogin}
+            className="login-button"
+          >
+            Login
+          </Button>
+        </Box>
+      </Container>
+    </div>
   );
 }
 
 export default Login;
-

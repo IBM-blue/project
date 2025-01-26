@@ -15,6 +15,7 @@ import dayjs from "dayjs";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 import EventSeatIcon from "@mui/icons-material/EventSeat";
 import axios from "axios";
+import "./Navbar.css"; // Import the CSS file
 
 const timeSlots = [
   "10:00 - 10:30",

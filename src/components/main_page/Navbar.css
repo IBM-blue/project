@@ -1,0 +1,113 @@
+/* Navbar container */
+.MuiAppBar-root {
+    background: linear-gradient(135deg, #1e88e5, #42a5f5);
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+    padding: 10px 20px;
+  }
+  
+  /* Toolbar spacing */
+  .MuiToolbar-root {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  /* Title styling */
+  .navbar-title {
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    color: white;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+  }
+  
+  /* TextField styling */
+  .MuiTextField-root {
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Date picker field */
+  .MuiInputBase-root {
+    border-radius: 8px;
+    padding: 8px;
+  }
+  
+  /* Balance container */
+  .balance-container {
+    display: flex;
+    align-items: center;
+    color: white;
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+  
+  /* Seats icon container */
+  .seats-icon-container {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+  
+  .seats-icon-container:hover {
+    transform: scale(1.1);
+  }
+  
+  /* Grid layout for seat buttons */
+  .seats-grid {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 15px;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  /* Seat button styles */
+  .MuiButton-root {
+    width: 50px;
+    height: 50px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+  }
+  
+  .MuiButton-containedPrimary {
+    background-color: #4caf50;
+    color: white;
+  }
+  
+  .MuiButton-containedError {
+    background-color: #e53935;
+    color: white;
+  }
+  
+  .MuiButton-outlinedPrimary {
+    border-color: #1976d2;
+    color: #1976d2;
+  }
+  
+  .MuiButton-containedSuccess {
+    background-color: #66bb6a;
+  }
+  
+  /* Booking button styles */
+  .booking-button {
+    margin-top: 20px;
+    padding: 12px 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    text-transform: none;
+    background: linear-gradient(90deg, #1e88e5, #42a5f5);
+    color: white;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s ease;
+  }
+  
+  .booking-button:hover {
+    background: linear-gradient(90deg, #1565c0, #1e88e5);
+  }
+  

@@ -10,26 +10,26 @@ const cafeterias = [
     name: "IBM Cafeteria - Main Hall",
     location: "Building A, Floor 1",
     description: "A spacious cafeteria offering a variety of meals and beverages. Perfect for team lunches.",
-    image: "https://serenityhostels.in/wp-content/uploads/2024/07/cafe.webp"
+    image: "/images/main_hall.webp",
   },
   {
     name: "IBM Cafeteria - Tech Hub",
     location: "Building C, Floor 2",
     description: "A cozy cafeteria with modern decor and quick snacks for tech enthusiasts.",
-    image: "https://serenityhostels.in/wp-content/uploads/2024/07/cafe.webp"
+    image: "/images/tech_hub.webp",
   },
   {
     name: "IBM Cafeteria - Executive Lounge",
     location: "Building B, Floor 3",
     description: "An exclusive cafeteria offering premium meals for executives and clients.",
-    image: "https://serenityhostels.in/wp-content/uploads/2024/07/cafe.webp"
+    image: "/images/executive_lounge.webp",
   },
   {
     name: "IBM Cafeteria - Outdoor Patio",
     location: "Building D, Ground Floor",
     description: "An open-air cafeteria with beautiful greenery and healthy food options.",
-    image: "https://serenityhostels.in/wp-content/uploads/2024/07/cafe.webp"
-  }
+    image: "/images/outdoor_patio.webp",
+  },
 ];
 
 const CafeteriaCards = () => {
@@ -43,7 +43,7 @@ const CafeteriaCards = () => {
   return (
     <Box
       sx={{
-        padding: 3
+        padding: 3,
       }}
     >
       <Typography
@@ -73,12 +73,16 @@ const CafeteriaCards = () => {
                 boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
                 overflow: "hidden",
                 backgroundColor: "#f5f5f5",
-                transition: "transform 0.2s"
+                transition: "transform 0.2s",
               }}
             >
               <CardMedia
                 component="img"
-                height="200"
+                sx={{
+                  height: 200,
+                  width: "100%", // Ensures the image spans the full width of the card
+                  objectFit: "cover", // Ensures the image covers the entire area
+                }}
                 image={cafeteria.image}
                 alt={cafeteria.name}
               />
@@ -107,7 +111,7 @@ const CafeteriaCards = () => {
                   sx={{
                     borderRadius: "8px",
                     textTransform: "none",
-                    fontWeight: "bold"
+                    fontWeight: "bold",
                   }}
                   onClick={() => handleExploreMore(cafeteria.location)}
                 >
