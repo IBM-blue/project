@@ -70,22 +70,22 @@ public class SeatService {
 
 
 
-//    public boolean deleteSeat(int seatNo) {
-//        Seat seat = seatRepository.findById(seatNo).orElse(null);
-//        if (seat == null) {
-//            return false;
-//        }
-//        User user = userRepository.findById(seat.getUserId()).orElse(null);
-//        if (user == null) {
-//            return false;
-//        }
-//        Manager manager = managerRepository.findById(user.getManagerId()).orElse(null);
-//        if (manager == null) {
-//            return false;
-//        }
-//        manager.setCredit(manager.getCredit() + 50);
-//        managerRepository.save(manager);
-//        seatRepository.deleteById(seatNo);
-//        return true;
-//    }
+    public boolean deleteSeat(long seatId) {
+        Seat seat = seatRepository.findById(seatId).orElse(null);
+        if (seat == null) {
+            return false;
+        }
+        User user = userRepository.findById(seat.getUserId()).orElse(null);
+        if (user == null) {
+            return false;
+        }
+        Manager manager = managerRepository.findById(user.getManagerId()).orElse(null);
+        if (manager == null) {
+            return false;
+        }
+        manager.setCredit(manager.getCredit() + 50);
+        managerRepository.save(manager);
+        seatRepository.deleteById(seatId);
+        return true;
+    }
 }

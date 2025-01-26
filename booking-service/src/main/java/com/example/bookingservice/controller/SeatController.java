@@ -55,17 +55,17 @@ public class SeatController {
 
 
 
-//    @DeleteMapping("/delete/{seatId}")
-//    public ResponseEntity<?> deleteSeat(@RequestHeader("Authorization") String header,
-//                                        @PathVariable int seatId) {
-//        if (!seatService.validToken(header)) {
-//            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-//        }
-//        boolean isDeleted = seatService.deleteSeat(seatId);
-//        if (isDeleted) {
-//            return new ResponseEntity<>("Seat deleted and coins credited back successfully.", HttpStatus.OK);
-//        } else {
-//            return new ResponseEntity<>("Seat deletion failed. Seat/User/Manager not found.", HttpStatus.BAD_REQUEST);
-//        }
-//    }
+    @DeleteMapping("/seats/{seatId}")
+    public ResponseEntity<?> deleteSeat(@RequestHeader("Authorization") String header,
+                                        @PathVariable("seatId") long seatId) {
+        if (!seatService.validToken(header)) {
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
+        boolean isDeleted = seatService.deleteSeat(seatId);
+        if (isDeleted) {
+            return new ResponseEntity<>("Seat deleted and coins credited back successfully.", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Seat deletion failed. Seat/User/Manager not found.", HttpStatus.BAD_REQUEST);
+        }
+    }
 }
