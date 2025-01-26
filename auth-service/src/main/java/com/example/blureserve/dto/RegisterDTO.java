@@ -3,8 +3,7 @@ package com.example.blureserve.dto;
 public class RegisterDTO {
     private String username;
     private String password;
-    private String email;
-    private String managerID
+    private String managerEmail;
 
     // Getters and Setters
     public String getUsername() {
@@ -23,14 +22,11 @@ public class RegisterDTO {
         this.password = password;
     }
 
-    public void setManagerID(String managerID){
-        this.managerID=managerID;
-   }
+    public String getManagerEmail() {
+        return managerEmail;
+    }
 
-
-   public String getManagerID() {
-        return managerID;
-   }
-
-
+    public void setManagerEmail(String managerEmail) {
+        this.managerEmail = managerEmail;
+    }
 }

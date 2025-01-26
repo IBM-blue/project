@@ -1,8 +1,11 @@
 package com.example.blureserve.controller;
 
 import com.example.blureserve.dto.LoginDTO;
+import com.example.blureserve.dto.RegisterDTO;
 import com.example.blureserve.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,12 +32,12 @@ public class AuthController {
 
 
     @PostMapping("/signup")
-    public String signup(@RequestBody RegisterDTO registerDTO) {
-        boolean isRegistered = authService.register(registerDTO.getUsername(), registerDTO.getPassword());
-        if (!isRegistered) {
-            return "Registration Failed";
+    public ResponseEntity<?> signup(@RequestBody RegisterDTO registerDTO) {
+        String res = authService.register(registerDTO.getUsername(), registerDTO.getPassword(), registerDTO.getManagerEmail());
+        if (res==null) {
+            return new ResponseEntity<>("Already Registered User", HttpStatus.BAD_REQUEST);
         }
-        return "User Registered Successfully";
+        return new ResponseEntity<>(res, HttpStatus.OK);
     }
 
 
