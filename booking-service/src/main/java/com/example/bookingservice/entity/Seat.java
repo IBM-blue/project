@@ -18,6 +18,8 @@ public class Seat {
     @Column(name = "seat_no")
     private int seatNo;
 
+    private String location;
+
     public Seat() {
 
     }
@@ -62,10 +64,19 @@ public class Seat {
         this.seatNo = seatNo;
     }
 
-    public Seat(String date, String time, long userId, int seatNo) {
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public Seat(String date, String time, long userId, int seatNo, String location) {
         this.date = date;
         this.time = time;
         this.userId = userId;
         this.seatNo = seatNo;
+        this.location = location;
     }
 }

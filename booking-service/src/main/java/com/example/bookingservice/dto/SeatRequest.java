@@ -5,6 +5,7 @@ public class SeatRequest {
     private String date;
     private String time;
     private int seatNo;
+    private String location;
 
     public long getUserId() {
         return userId;
@@ -36,5 +37,13 @@ public class SeatRequest {
 
     public void setSeatNo(int seatNo) {
         this.seatNo = seatNo;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 }
