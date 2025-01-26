@@ -25,4 +25,22 @@ public class AuthService {
         return jwtService.generateToken(user.getUsername(), user.getId());
     }
 
+
+    // @Autowired
+    // private UserRepository userRepository;
+    
+    public boolean register(String username, String password, String managerID) {
+        if (authRepository.existsByUsername(username)) {
+            return false; // Username already exists
+        }
+        User user = new User();
+        user.setUsername(username);
+        user.setPassword(password); 
+        user.setManagerID(email);
+        userRepository.save(user);
+
+        return jwtService.generateToken(username, password);
+        
+    }
+
 }
